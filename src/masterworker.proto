@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package masterworker;
+
+service WorkerReq{
+	rpc performtask (WorkDetails) returns (WorkConfirmation) {}
+}
+
+message FileInfo {
+	string input_file = 1;
+	double file_offset = 2;
+}
+
+message WorkDetails{
+	double initial_file_start = 1;
+    repeated FileInfo FileDetails = 2;
+	string user_id = 3;
+	bool is_mapper = 4;
+	double job_id = 5;
+	double file_count = 6;
+	repeated double completed_jobs = 7;
+}
+
+message WorkConfirmation{
+	bool is_mapper = 1;
+	double job_id = 2;
+}
